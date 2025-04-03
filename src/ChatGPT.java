@@ -29,6 +29,7 @@ public class ChatGPT {
 
             // request
             String body = "{\"model\": \"" + model + "\", \"messages\": [{\"role\": \"user\", \"content\": \"" + prompt + "\"}]}";
+//            System.out.println("Body: \n" + body);
             connection.setDoOutput(true);
             OutputStreamWriter writer = new OutputStreamWriter(connection.getOutputStream());
             writer.write(body);
@@ -47,11 +48,22 @@ public class ChatGPT {
             br.close();
 
             // calls the method to extract the message.
-            return response.toString();
+            return extractContentFromJSONResponse(response.toString());
 
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
     } // end of requestChatGPT method
+
+    public String extractContentFromJSONResponse(String response) {
+//        System.out.println(response);
+        int start = response.indexOf("content")+ 11;
+
+        int end = response.indexOf("\"", start);
+
+        return response.substring(start, end);
+
+    }
+
 
 }
