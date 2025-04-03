@@ -14,11 +14,10 @@ public class ChatGPT {
 
     public String requestChatGPT(String prompt) {
         String url = "https://api.openai.com/v1/chat/completions";
-        // Below is the department API key for 2025.
         // If you push this to a public GitHub repository, the API key will STOP working
         // To push to GitHub, make sure you repository is *PRIVATE*
-        String apiKey = "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";
-        String model = "gpt-3.5-turbo";
+        String apiKey = ""; // add your API key here inside the quotes!
+        String model = "gpt-3.5-turbo"; // feel free to upgrade this to a more recent model
 
         try {
             URL obj = new URL(url);
